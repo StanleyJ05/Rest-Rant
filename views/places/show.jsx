@@ -2,6 +2,23 @@ const React = require('react')
 const Def = require('../default')
 
 function show (data) {
+  let comments = (
+    <h6 className='inactive'>
+        No comments yet! 
+    </h6>
+)
+if (data.place.comments.length) {
+    comments = data.place.comments.map((c) => {
+        return (
+            <div className='border'>
+                <h4 className='rant'>{c.rant ? 'Rant!' : 'Rave! '}</h4>
+                <blockquote className="blockquote">{c.content}</blockquote>
+                <figcaption className="blockquote-footer">{c.author}</figcaption>
+                <h4>{ "".repeat(c.stars)}</h4>
+            </div>
+        )
+    })
+}
     return (
         <Def>
           <main className="px-5 py-4">
